@@ -9,6 +9,10 @@ I will use several methods of mungifying data to get it ready for use in the LDA
 
 After this, we can try to run an LDA or HLDA on the transformed data. Each methodology will have its own subdirectory in this directory, and they will each have some description about why I've done what I've done.
 
+## Subunits
+
+There are subunits for "stemming," and for the various data-processing methodologies 
+
 ## Current List of Methodologies
 
 The following is a list of the methodologies / scripts included in this module
@@ -28,3 +32,9 @@ The following is a list of the methodologies / scripts included in this module
 4. Sequence based
 
 	In this method, we use sequences as words, with lengths on the order of hundreds of base-pairs.
+
+	We can also create arbitrarily shorter ones, by creating chunks based on pieces of each sequence.
+
+5. Protein-based version
+
+	After consulting with a real biologist, I found that creating words based on a "sliding window" of amino acid sequences of a fixed length (four was suggested) in documents.
