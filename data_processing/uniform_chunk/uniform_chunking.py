@@ -14,24 +14,24 @@ CHUNK_SIZE = 7
 
 
 def chunk_uniform(input_gene, chunk_size=CHUNK_SIZE):
-	return [input_gene[i:i+chunk_size] for i in range(0, len(input_gene), chunk_size)]
+    return [input_gene[i:i+chunk_size] for i in range(0, len(input_gene), chunk_size)]
 
 def read_from_file(species):
-	pass
+    pass
 
 def create_chunked_file(species, output_dir="."):
-	unchunked_data = read_from_file(species)
-	chunked_data = chunk_uniform(unchunked_data)
-	with open(f"{output_dir}/{species}.txt") as fh:
-		for chunk in chunked_data:
-			fh.write(f"{chunk} ")
+    unchunked_data = read_from_file(species)
+    chunked_data = chunk_uniform(unchunked_data)
+    with open(f"{output_dir}/{species}.txt") as fh:
+        for chunk in chunked_data:
+            fh.write(f"{chunk} ")
 
 
 if __name__ == '__main__':
-	if not ( 2 < len(sys.argv) < 3):
-		print("Usage: python3 uniform_chunking.py <species> [<output_dir>]")
-		exit(1)
+    if not ( 2 < len(sys.argv) < 3):
+        print("Usage: python3 uniform_chunking.py <species> [<output_dir>]")
+        exit(1)
 
-	output_dir = "." if len(sys.argv == 2) else sys.argv[2]
-	species = sys.argv[1]
-	create_chunked_file(species, output_dir)
+    output_dir = "." if len(sys.argv == 2) else sys.argv[2]
+    species = sys.argv[1]
+    create_chunked_file(species, output_dir)
