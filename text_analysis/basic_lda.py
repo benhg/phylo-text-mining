@@ -1,5 +1,6 @@
 from glob import glob
 import os
+import sys
 
 """
 Basic first-pass at an LDA
