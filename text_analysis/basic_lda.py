@@ -105,7 +105,7 @@ if __name__ == '__main__':
 
     import pyLDAvis.gensim
     #  pyLDAvis.enable_notebook()
-    vis = pyLDAvis.gensim.prepare(model, corpus, dictionary=model.id2word)
+    vis = pyLDAvis.gensim.prepare(model, corpus, dictionary=id2word)
     vis.save_html("lda_vis.html")
 
 
