@@ -104,9 +104,10 @@ if __name__ == '__main__':
     pprint(top_topics)
 
     import pyLDAvis.gensim
+    import pyLDAvis
     #  pyLDAvis.enable_notebook()
     vis = pyLDAvis.gensim.prepare(model, corpus, dictionary=dictionary)
-    vis.save_html("lda_vis.html")
+    pyLDAvis.save_html(vis, open("lda_vis.html", "w"))
 
 
 
