@@ -6,6 +6,7 @@ from nltk.tokenize import RegexpTokenizer
 from gensim.models import Phrases
 from nltk.stem.wordnet import WordNetLemmatizer
 from gensim.corpora import Dictionary
+from gensim.models.ldamulticore import LdaMulticore
 
 """
 Basic first-pass at an LDA
@@ -58,8 +59,7 @@ def create_bow(docs):
     dictionary.filter_extremes(no_below=20, no_above=0.5)
     # Bag-of-words representation of the documents.
     corpus = [dictionary.doc2bow(doc) for doc in docs]
-    print('Number of unique tokens: %d' % len(dictionary))
-    print('Number of documents: %d' % len(corpus))
+    return corpus, dictionary
 
 if __name__ == '__main__':
     if not ( 2 == len(sys.argv)):
@@ -75,7 +75,30 @@ if __name__ == '__main__':
     tokenized_docs = tokenize_docs(documents)
     # lemmatized = lemmatize_docs(tokenized_docs) (don't do this because it;s not english)
     n_grams = add_ngrams(tokenized_docs)
-    create_bow(n_grams)
+    corpus, dictionary = create_bow(n_grams)
+
+    # Set training parameters.
+    num_topics = 10
+    chunksize = 2000
+    passes = 20
+    iterations = 400
+    eval_every = None  # Don't evaluate model perplexity, takes too much time.
+
+    # Make a index to word dictionary.
+    temp = dictionary[0]  # This is only to "load" the dictionary.
+    id2word = dictionary.id2token
+
+    model = LdaMulticore(
+        corpus=corpus,
+        id2word=id2word,
+        chunksize=chunksize,
+        alpha='auto',
+        eta='auto',
+        iterations=iterations,
+        num_topics=num_topics,
+        passes=passes,
+        eval_every=eval_every
+    )
 
 
 
