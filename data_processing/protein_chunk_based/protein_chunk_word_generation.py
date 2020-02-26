@@ -1,5 +1,7 @@
 from Bio import SeqIO
 
+import sys
+import os
 """
 Generate words as chunks of proteins.
 
@@ -44,5 +46,7 @@ if __name__ == '__main__':
 		exit(1)
 
 	output_dir = "." if len(sys.argv == 2) else sys.argv[2]
+	if not os.path.isdir(output_dir):
+		os.makedirs(output_dir)
 	species = sys.argv[1]
 	create_all_documents(species, output_dir)
