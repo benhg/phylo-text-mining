@@ -45,7 +45,7 @@ if __name__ == '__main__':
 		print("Usage: python3 protein_chunk_word_generation.py <path to transcript file> [<output_dir>]")
 		exit(1)
 
-	output_dir = "." if len(sys.argv == 2) else sys.argv[2]
+	output_dir = "." if len(sys.argv) == 2 else sys.argv[2]
 	if not os.path.isdir(output_dir):
 		os.makedirs(output_dir)
 	species = sys.argv[1]
