@@ -93,16 +93,6 @@ if __name__ == '__main__':
         id2word=id2word,
         num_topics=num_topics,
         )
-    """
-        chunksize=chunksize,
-        alpha='auto',
-        eta='auto',
-        iterations=iterations,
-        num_topics=num_topics,
-        passes=passes,
-        eval_every=eval_every
-    )
-    """
 
     top_topics = model.top_topics(corpus) #, num_words=20)
 
@@ -112,6 +102,12 @@ if __name__ == '__main__':
 
     from pprint import pprint
     pprint(top_topics)
+
+    import pyLDAvis.gensim
+    #  pyLDAvis.enable_notebook()
+    vis = pyLDAvis.gensim.prepare(model, corpus, dictionary=lda_model.id2word)
+    vis.save_html("lda_vis.html")
+
 
 
 
