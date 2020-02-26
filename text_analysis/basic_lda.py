@@ -91,6 +91,9 @@ if __name__ == '__main__':
     model = LdaMulticore(
         corpus=corpus,
         id2word=id2word,
+        num_topics=num_topics,
+        )
+    """
         chunksize=chunksize,
         alpha='auto',
         eta='auto',
@@ -99,6 +102,7 @@ if __name__ == '__main__':
         passes=passes,
         eval_every=eval_every
     )
+    """
 
 
 
