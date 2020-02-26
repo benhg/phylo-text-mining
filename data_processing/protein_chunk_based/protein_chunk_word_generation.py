@@ -36,7 +36,7 @@ def create_all_documents(transcrpt_file, output_dir):
 	"""
 	sequence_dict = load_transcript_file(transcrpt_file)
 	for sequence in sequence_dict.keys():
-		process_single_transcript(sequence, sequence_dict[sequence])
+		process_single_transcript(sequence, str(sequence_dict[sequence]))
 
 
 
