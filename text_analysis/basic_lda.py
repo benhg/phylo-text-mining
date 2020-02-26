@@ -44,4 +44,10 @@ if __name__ == '__main__':
     species = sys.argv[1]
     documents = load_documents(input_dir)
     tokenized_docs = tokenize_docs(documents)
-    print(tokenized_docs)
+    docs = tokenized_docs
+    # Lemmatize the documents.
+    from nltk.stem.wordnet import WordNetLemmatizer
+
+    lemmatizer = WordNetLemmatizer()
+    docs = [[lemmatizer.lemmatize(token) for token in doc] for doc in docs]
+    print(docs)
