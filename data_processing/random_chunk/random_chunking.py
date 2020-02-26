@@ -25,9 +25,9 @@ def chunk_random(input_gene, chunk_size=CHUNK_SIZE):
 			current += next_chunk_size
 		except Exception as e:
 			# We've hit the end of the gene
-			chunks.append(input_gene[current:])
+			chunks.append(inp1ut_gene[current:])
 			break
-			
+
 	return chunks
 	
 
@@ -36,7 +36,7 @@ def read_from_file(species):
 
 def create_chunked_file(species, output_dir="."):
 	unchunked_data = read_from_file(species)
-	chunked_data = chunk_uniform(unchunked_data)
+	chunked_data = chunk_random(unchunked_data)
 	with open(f"{output_dir}/{species}.txt") as fh:
 		for chunk in chunked_data:
 			fh.write(f"{chunk} ")
@@ -44,7 +44,7 @@ def create_chunked_file(species, output_dir="."):
 
 if __name__ == '__main__':
 	if not ( 2 < len(sys.argv) < 3):
-		print("Usage: python3 uniform_chunking.py <species> [<output_dir>]")
+		print("Usage: python3 random_chunking.py <species> [<output_dir>]")
 		exit(1)
 
 	output_dir = "." if len(sys.argv == 2) else sys.argv[2]
