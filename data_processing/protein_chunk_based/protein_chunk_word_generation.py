@@ -41,7 +41,7 @@ def create_all_documents(transcrpt_file, output_dir):
 
 
 if __name__ == '__main__':
-	if not ( 2 < len(sys.argv) < 3):
+	if not ( 2 <= len(sys.argv) <= 3):
 		print("Usage: python3 protein_chunk_word_generation.py <path to transcript file> [<output_dir>]")
 		exit(1)
 
