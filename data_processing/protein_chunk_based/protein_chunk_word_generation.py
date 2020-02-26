@@ -19,7 +19,7 @@ def load_transcript_file(path, file_format="fasta"):
 	with open(path) as handle:
 		return SeqIO.to_dict(SeqIO.parse(handle, file_format))
 
-def process_single_transcript(transcript_name, transcript_string)
+def process_single_transcript(transcript_name, transcript_string):
 	"""
 	Create one document from a transcript name
 	"""
