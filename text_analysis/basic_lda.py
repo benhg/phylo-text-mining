@@ -104,6 +104,15 @@ if __name__ == '__main__':
     )
     """
 
+    top_topics = model.top_topics(corpus) #, num_words=20)
+
+    # Average topic coherence is the sum of topic coherences of all topics, divided by the number of topics.
+    avg_topic_coherence = sum([t[1] for t in top_topics]) / num_topics
+    print('Average topic coherence: %.4f.' % avg_topic_coherence)
+
+    from pprint import pprint
+    pprint(top_topics)
+
 
 
 
