@@ -1,6 +1,7 @@
 from glob import glob
 import os
 import sys
+from nltk.tokenize import RegexpTokenizer
 
 """
 Basic first-pass at an LDA
@@ -16,6 +17,20 @@ def load_documents(input_dir):
 			documents.append(fh.read())
 	return documents
 
+def tokenize_docs(docs):
+	# Split the documents into tokens.
+	tokenizer = RegexpTokenizer(r'\w+')
+	for idx in range(len(docs)):
+    	docs[idx] = docs[idx].lower()  # Convert to lowercase.
+    	docs[idx] = tokenizer.tokenize(docs[idx])  # Split into words.
+
+	# Remove numbers, but not words that contain numbers.
+	docs = [[token for token in doc if not token.isnumeric()] for doc in docs]
+
+	# Remove words that are only one character.
+	docs = [[token for token in doc if len(token) > 1] for doc in docs]
+	return docs
+
 
 if __name__ == '__main__':
 	if not ( 2 == len(sys.argv)):
@@ -28,4 +43,5 @@ if __name__ == '__main__':
 		exit(1)
 	species = sys.argv[1]
 	documents = load_documents(input_dir)
-	print(documents)
+	tokenized_docs = tokenized_docs(documents)
+	print(tokenized_docs)
