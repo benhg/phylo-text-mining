@@ -5,3 +5,8 @@ An important part of this project is going to be "stemming". In the linguistic v
 In our genetic version, what we want to do is to find all proteome motifs that have the same "meaning" - referring in this case to functional value. 
 
 The code in that module will help us with our stemming.
+
+
+## Note on stopping
+
+Also to note here - we should figure out whether there's an equivalent of stopp-words in this kind of thing.
