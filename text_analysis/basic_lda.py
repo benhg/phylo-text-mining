@@ -14,6 +14,7 @@ def load_documents(input_dir):
 	for filename in filenames:
 		with open(filename) as fh:
 			documents.append(fh.read())
+	return documents
 
 
 if __name__ == '__main__':
