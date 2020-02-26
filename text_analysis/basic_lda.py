@@ -5,6 +5,7 @@ import sys
 from nltk.tokenize import RegexpTokenizer
 from gensim.models import Phrases
 from nltk.stem.wordnet import WordNetLemmatizer
+from gensim.corpora import Dictionary
 
 """
 Basic first-pass at an LDA
@@ -49,6 +50,17 @@ def add_ngrams(docs):
                 docs[idx].append(token)
     return docs
 
+def create_bow(docs):
+    # Create a dictionary representation of the documents.
+    dictionary = Dictionary(docs)
+
+    # Filter out words that occur less than 20 documents, or more than 50% of the documents.
+    dictionary.filter_extremes(no_below=20, no_above=0.5)
+    # Bag-of-words representation of the documents.
+    corpus = [dictionary.doc2bow(doc) for doc in docs]
+    print('Number of unique tokens: %d' % len(dictionary))
+    print('Number of documents: %d' % len(corpus))
+
 if __name__ == '__main__':
     if not ( 2 == len(sys.argv)):
         print("Usage: python3 basic_lda.py <input_dir>")
@@ -63,6 +75,7 @@ if __name__ == '__main__':
     tokenized_docs = tokenize_docs(documents)
     # lemmatized = lemmatize_docs(tokenized_docs) (don't do this because it;s not english)
     n_grams = add_ngrams(tokenized_docs)
+    create_bow(n_grams)
 
 
 
