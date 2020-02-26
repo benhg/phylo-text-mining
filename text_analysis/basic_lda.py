@@ -43,5 +43,5 @@ if __name__ == '__main__':
         exit(1)
     species = sys.argv[1]
     documents = load_documents(input_dir)
-    tokenized_docs = tokenized_docs(documents)
+    tokenized_docs = tokenize_docs(documents)
     print(tokenized_docs)
