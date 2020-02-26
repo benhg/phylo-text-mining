@@ -25,6 +25,7 @@ def process_single_transcript(transcript_name, transcript_string):
 	"""
 	sliding_window_chunks = [transcript_string[i:i+SLIDING_WINDOW_WIDTH] for i in range(0, len(transcript_string)-2, WINDOW_SLIDES_BY)]
 	with open(f"{output_dir}/{transcript_name}.txt", "w") as fh:
+		fh.write(" ".join(sliding_window_chunks))
 
 
 def create_all_documents(transcrpt_file, output_dir):
