@@ -22,8 +22,9 @@ if __name__ == '__main__':
 		exit(1)
 
 	input_dir = sys.argv[1]
-	if not os.path.isdir(output_dir):
-		os.makedirs(output_dir)
+	if not os.path.isdir(input_dir):
+		print("Input Dir Does Not Exist")
+		exit(1)
 	species = sys.argv[1]
 	documents = load_documents(input_dir)
 	print(documents)
