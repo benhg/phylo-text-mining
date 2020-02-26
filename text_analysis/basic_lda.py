@@ -1,7 +1,10 @@
 from glob import glob
 import os
 import sys
+
 from nltk.tokenize import RegexpTokenizer
+from gensim.models import Phrases
+from nltk.stem.wordnet import WordNetLemmatizer
 
 """
 Basic first-pass at an LDA
@@ -31,6 +34,20 @@ def tokenize_docs(docs):
     docs = [[token for token in doc if len(token) > 1] for doc in docs]
     return docs
 
+def lemmatize_docs(docs):
+    lemmatizer = WordNetLemmatizer()
+    docs = [[lemmatizer.lemmatize(token) for token in doc] for doc in docs]
+    return docs
+
+def add_ngrams(docs):
+    # Add bigrams and trigrams to docs (only ones that appear 20 times or more).
+    bigram = Phrases(docs, min_count=20)
+    for idx in range(len(docs)):
+        for token in bigram[docs[idx]]:
+            if '_' in token:
+                # Token is a bigram, add to document.
+                docs[idx].append(token)
+    return docs
 
 if __name__ == '__main__':
     if not ( 2 == len(sys.argv)):
@@ -44,10 +61,9 @@ if __name__ == '__main__':
     species = sys.argv[1]
     documents = load_documents(input_dir)
     tokenized_docs = tokenize_docs(documents)
-    docs = tokenized_docs
-    # Lemmatize the documents.
-    from nltk.stem.wordnet import WordNetLemmatizer
+    # lemmatized = lemmatize_docs(tokenized_docs) (don't do this because it;s not english)
+    n_grams = add_ngrams(tokenized_docs)
 
-    lemmatizer = WordNetLemmatizer()
-    docs = [[lemmatizer.lemmatize(token) for token in doc] for doc in docs]
-    print(docs)
+
+
+
