@@ -78,10 +78,8 @@ if __name__ == '__main__':
     corpus, dictionary = create_bow(n_grams)
 
     # Set training parameters.
-    num_topics = 10
+    num_topics = 100
     chunksize = 2000
-    passes = 20
-    iterations = 400
     eval_every = None  # Don't evaluate model perplexity, takes too much time.
 
     # Make a index to word dictionary.
