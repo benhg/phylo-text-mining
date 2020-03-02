@@ -20,3 +20,6 @@ def remove_long_tails(sequence):
 	return sequence
 
 
+def fully_stem_and_lemmatize(sequence):
+	sequence = remove_long_tails(sequence)
+	return sequence
