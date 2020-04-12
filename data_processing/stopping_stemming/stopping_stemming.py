@@ -1,5 +1,6 @@
 import regex as re
 import string
+from Bio import SeqIO
 """
 Stopping and Stemming should help us
 reduce the data closer to purely semantic units.
@@ -41,6 +42,9 @@ def fully_stem_and_lemmatize(sequence):
 	"""
 	sequence = remove_long_tails_no_regex(sequence)
 	return sequence
+
+def stem_and_lemmatize_in_fasta_file(fasta_file_location, output_file_location):
+
 
 
 if __name__ == '__main__':
