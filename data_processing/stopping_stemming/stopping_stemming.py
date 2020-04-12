@@ -57,4 +57,4 @@ if __name__ == '__main__':
 		print(f"Usage: {sys.argv[0]} <Input file> <Output file>")
 		exit(1)
 
-	
+	stem_and_lemmatize_in_fasta_file(sys.argv[1] sys.argv[2])
