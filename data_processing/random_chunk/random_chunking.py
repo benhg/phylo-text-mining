@@ -15,7 +15,7 @@ CHUNK_MIN = 1
 CHUNK_MAX = 18
 
 
-def chunk_random(input_gene, chunk_size=CHUNK_SIZE):
+def chunk_random(input_gene, chunk_size=CHUNK_MIN):
     chunks = []
     current = 0
     while True:
@@ -23,9 +23,9 @@ def chunk_random(input_gene, chunk_size=CHUNK_SIZE):
             next_chunk_size = random.randint(CHUNK_MIN, CHUNK_MAX)
             chunks.append(input_gene[current:current + next_chunk_size])
             current += next_chunk_size
-        except Exception as e:
+        except Exception:
             # We've hit the end of the gene
-            chunks.append(inp1ut_gene[current:])
+            chunks.append(input_gene[current:])
             break
 
     return chunks
