@@ -21,11 +21,13 @@ def load_transcript_file(path, file_format="fasta"):
     with open(path) as handle:
         return SeqIO.to_dict(SeqIO.parse(handle, file_format))
 
+
 def process_single_transcript(transcript_name, transcript_string):
     """
     Create one document from a transcript name
     """
-    sliding_window_chunks = [transcript_string[i:i+SLIDING_WINDOW_WIDTH] for i in range(0, len(transcript_string)-2, WINDOW_SLIDES_BY)]
+    sliding_window_chunks = [transcript_string[i:i + SLIDING_WINDOW_WIDTH]
+                             for i in range(0, len(transcript_string) - 2, WINDOW_SLIDES_BY)]
     with open(f"{output_dir}/{transcript_name}.txt", "w") as fh:
         fh.write(" ".join(sliding_window_chunks))
 
@@ -39,10 +41,10 @@ def create_all_documents(transcrpt_file, output_dir):
         process_single_transcript(sequence, str(sequence_dict[sequence].seq))
 
 
-
 if __name__ == '__main__':
-    if not ( 2 <= len(sys.argv) <= 3):
-        print("Usage: python3 protein_chunk_word_generation.py <path to transcript file> [<output_dir>]")
+    if not (2 <= len(sys.argv) <= 3):
+        print(
+            "Usage: python3 protein_chunk_word_generation.py <path to transcript file> [<output_dir>]")
         exit(1)
 
     output_dir = "." if len(sys.argv) == 2 else sys.argv[2]

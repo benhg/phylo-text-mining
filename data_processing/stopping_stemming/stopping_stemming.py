@@ -10,6 +10,7 @@ There are several types of things that this entails
 This module should help to filter out our equivalent of "stop-words"
 """
 
+
 def remove_long_tails(sequence):
     """
     One of the more frequent issues that shows up with data like this
@@ -23,6 +24,7 @@ def remove_long_tails(sequence):
 
     return sequence
 
+
 def remove_long_tails_no_regex(sequence):
     """
     Do the same as above, but no regex
@@ -30,11 +32,10 @@ def remove_long_tails_no_regex(sequence):
     letters = list(string.ascii_uppercase + string.ascii_lowercase)
     for letter in letters:
         for i in range(10, 4, -1):
-            letter_pattern = letter*i
+            letter_pattern = letter * i
             if letter_pattern in sequence:
                 sequence = sequence.replace(letter_pattern, "")
     return sequence
-
 
 
 def fully_stem_and_lemmatize(sequence):
@@ -44,12 +45,13 @@ def fully_stem_and_lemmatize(sequence):
     sequence = remove_long_tails_no_regex(sequence)
     return sequence
 
-def stem_and_lemmatize_in_fasta_file(fasta_file_location, output_file_location):
+
+def stem_and_lemmatize_in_fasta_file(
+        fasta_file_location, output_file_location):
     with open(output_file_location, "w") as fh:
         for record in SeqIO.parse(handle, "fasta"):
-                fh.write(f">{record.id}\n")
-                fh.write(str(fully_stem_and_lemmatize(str(record.seq))))
-
+            fh.write(f">{record.id}\n")
+            fh.write(str(fully_stem_and_lemmatize(str(record.seq))))
 
 
 if __name__ == '__main__':

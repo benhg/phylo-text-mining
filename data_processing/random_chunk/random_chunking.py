@@ -2,11 +2,11 @@ import sys
 import random
 
 """
-Random Chunking approach. In this methodology, 
+Random Chunking approach. In this methodology,
 we chunk each gene sequence into random-length "words"
 
 For now, we're using "text-document like" files, which means
-that we're putting everything into plain text files with 
+that we're putting everything into plain text files with
 space-separated chunks
 """
 
@@ -21,7 +21,7 @@ def chunk_random(input_gene, chunk_size=CHUNK_SIZE):
     while True:
         try:
             next_chunk_size = random.randint(CHUNK_MIN, CHUNK_MAX)
-            chunks.append(input_gene[current:current+next_chunk_size])
+            chunks.append(input_gene[current:current + next_chunk_size])
             current += next_chunk_size
         except Exception as e:
             # We've hit the end of the gene
@@ -29,10 +29,11 @@ def chunk_random(input_gene, chunk_size=CHUNK_SIZE):
             break
 
     return chunks
-    
+
 
 def read_from_file(species):
     pass
+
 
 def create_chunked_file(species, output_dir="."):
     unchunked_data = read_from_file(species)
@@ -43,7 +44,7 @@ def create_chunked_file(species, output_dir="."):
 
 
 if __name__ == '__main__':
-    if not ( 2 < len(sys.argv) < 3):
+    if not (2 < len(sys.argv) < 3):
         print("Usage: python3 random_chunking.py <species> [<output_dir>]")
         exit(1)
 
