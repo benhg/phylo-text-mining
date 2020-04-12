@@ -52,7 +52,7 @@ def stem_and_lemmatize_in_fasta_file(
         with open(fasta_file_location, "r") as handle:
             for record in SeqIO.parse(handle, "fasta"):
                 fh.write(f">{record.id}\n")
-                fh.write(str(fully_stem_and_lemmatize(str(record.seq))))
+                fh.write(str(fully_stem_and_lemmatize(str(record.seq))) + "\n")
 
 
 if __name__ == '__main__':
