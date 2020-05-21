@@ -30,6 +30,16 @@ I've divided up this repo into the following submodules, for ease of maintainabi
 
 3. text_analysis
 
+
+
+### Notes
+
+run as is on many more families of stuff
+
+generate better test sets
+
+work on preprocesisng, incl. adding more flexible motifs.
+
 	This is where the actual text analysis code will be kept and output therefrom will be found.
 
 
